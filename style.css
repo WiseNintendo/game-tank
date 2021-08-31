@@ -1,0 +1,41 @@
+body {
+   margin: 0;
+   padding: 0;
+   background-color: black;
+
+}
+#world {
+	width: 700px;
+	height: 950px;
+	background-image: url('./levelmap.jpg');
+	position: relative;
+	background-repeat: no-repeat;
+	
+}
+#road{
+	position: absolute;
+	margin-top: -10000px;
+	
+}
+#car {
+	position: absolute;
+	margin-top:-10px;
+	margin-left:80px;
+	width: 100px;
+	height: 100px;
+}
+
+
+#tank {
+	position: absolute;
+	margin-top:600px;
+	margin-left:80px;
+	width: 100px;
+	height: 100px;
+}
+#score{
+	height:5%;
+	width: 700px;
+	background-color: red;
+	font-size:20px;
+}

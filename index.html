@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Игрушка</title>
+	<link rel="stylesheet" href="./style.css" type="text/css">
+</head>
+<body onkeydown="keydown(event)">
+	<div align="center">
+		<div id="world">
+				
+				<div id="car">
+					<img src="./car.png">
+				</div>
+				
+				<div id="tank">
+					<img src="./tank.png">
+				</div>
+			</div>
+			<div id="score">PRESS ENTER TO START
+			</div>
+		</div>
+	
+	<script>
+		
+		var Tank=document.getElementById('tank');
+		var Tankx=80;
+		var Tanky=600;
+		
+		var Car=document.getElementById('car');
+		var Carx=80;
+		var Cary=-10;
+		var speedCar = 10;
+		var IsStartCar = false;
+		
+		var divScore=document.getElementById('score');
+		var Score=0;
+		
+		function hasCollision() {
+			var CarWidth = 100;
+			var CarHeight = 100;
+			var TankWidth = 100;
+			var TankHeight = 100;
+			if (((Cary + CarHeight) > Tanky &&
+			    Cary < (Tanky + TankHeight) &&
+			    Carx < (Tankx + TankWidth) &&
+			    (Carx + CarWidth) > Tankx)){
+					return true;
+			}
+		}
+		
+		function clearning(){
+			IsStartCar=false;
+			Cary=-150;
+			Carx=400;
+			Car.style.marginLeft=Carx+'px';
+			Car.style.marginTop=Cary+'px';
+		}
+		
+		function moveCar(){
+			var line1=80;
+			var line2=400;
+			var RnD=0;
+			if (Cary>900){
+				Cary=-150;
+				Car.style.marginTop=Cary+'px';
+				RnD=Math.random()*2;
+				if (RnD>1){
+				Carx=400;
+				}else
+				if (RnD<1){Carx=80;
+				}
+				Car.style.marginLeft=Carx+'px';
+				}
+			if (hasCollision()==true){
+				clearning();
+				alert("XAHA!!! "+divScore.innerHTML+"xp");
+			}
+			
+			if (IsStartCar==true){
+				Cary+=10;
+				Car.style.marginTop=Cary+'px';
+				setTimeout('moveCar()',speedCar);
+				}
+			
+		}
+		
+		function keydown(e){
+			if (e.keyCode==13){
+				clearning();
+				IsStartCar=true;
+				Score=0;
+				divScore.innerHTML=Score;
+				moveCar();
+			}
+			if (e.keyCode==32){
+				
+			}
+			if (e.keyCode==37){
+				Tankx-=10;
+				Tank.style.marginLeft=Tankx+'px';	
+				/*if (IsStartBall==false){
+					Bally=Russiay+70;
+					Ball.style.marginTop=Bally+'px';
+				}*/
+			}
+			if (e.keyCode==39){
+			
+				Tankx+=10;
+				Tank.style.marginLeft=Tankx+'px';	
+				/*if (IsStartBall==false){
+					Bally=Russiay+70;
+					Ball.style.marginTop=Bally+'px';
+				}*/
+			}
+			
+			
+		}
+	</script>
+</body>
+</html>
